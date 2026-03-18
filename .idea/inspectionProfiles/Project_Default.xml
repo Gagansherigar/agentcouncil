@@ -1,0 +1,48 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="alembic" />
+          <option value="argon2-cffi" />
+          <option value="argon2-cffi-bindings" />
+          <option value="bcrypt" />
+          <option value="cffi" />
+          <option value="dnspython" />
+          <option value="ecdsa" />
+          <option value="email-validator" />
+          <option value="greenlet" />
+          <option value="Mako" />
+          <option value="MarkupSafe" />
+          <option value="passlib" />
+          <option value="psycopg2" />
+          <option value="pyasn1" />
+          <option value="pycparser" />
+          <option value="pydantic-settings" />
+          <option value="python-dotenv" />
+          <option value="python-jose" />
+          <option value="python-multipart" />
+          <option value="rsa" />
+          <option value="six" />
+          <option value="SQLAlchemy" />
+          <option value="fastapi" />
+          <option value="uvicorn" />
+          <option value="sentence-transformers" />
+          <option value="chromadb" />
+          <option value="faiss-cpu" />
+          <option value="numpy" />
+          <option value="scikit-learn" />
+          <option value="pypdf" />
+          <option value="pymupdf" />
+          <option value="langchain" />
+          <option value="langchain-core" />
+          <option value="langchain-community" />
+          <option value="langchain-text-splitters" />
+          <option value="langchain-groq" />
+          <option value="pydantic" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
