@@ -1,5 +1,5 @@
 from autogen_agentchat.base import TaskResult
-#from autogen_ext.models.openai import OpenAIChatCompletionClient
+from autogen_ext.models.openai import OpenAIChatCompletionClient
 from autogen_core.models import UserMessage
 import os
 from dotenv import load_dotenv
@@ -12,18 +12,19 @@ from autogen_agentchat.conditions import TextMentionTermination
 from autogen_ext.models.ollama import OllamaChatCompletionClient
 async def teamconfig(topic):
     load_dotenv()
-    model = OllamaChatCompletionClient(model="llama3",
-                                       host="http://localhost:11434")#(
-        #base_url="https://api.groq.com/openai/v1",
-        #model="llama-3.1-8b-instant",
-        #api_key=os.environ["GROQ_API_KEY"],
+    #model = OllamaChatCompletionClient(model="llama3",
+       #                                host="http://localhost:11434")#(
 
-      #  model_info={
-        #    "vision": False,
-         #   "function_calling": True,
-         #   "json_output": True,
-           # "family": "unknown", }
-  #  )
+    model=OpenAIChatCompletionClient(
+        base_url="https://api.groq.com/openai/v1",
+        model="llama-3.1-8b-instant",
+        api_key=os.environ["GROQ_API_KEY"],
+        model_info={
+           "vision": False,
+           "function_calling": True,
+           "json_output": True,
+           "family": "unknown", }
+    )
 
 
     host = AssistantAgent(name='Host',

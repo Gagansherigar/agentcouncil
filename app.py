@@ -7,36 +7,43 @@ st.title("Agent Council")
 topic = st.text_input("Enter a topic of the debate", "Should India Buy Russian Oil?")
 clicked = st.button("Start", type="primary")
 
-chat = st.container()
+chat_placeholder = st.empty()
 
-async def run_debate():
+
+def parse_message(msg: str):
+    # Expected: "Message:Host:content"
+    if msg.startswith("Message:"):
+        _, source, content = msg.split(":", 2)
+        return source.strip(), content.strip()
+    return "System", msg
+
+
+async def run_debate_stream(topic, placeholder):
     team = await teamconfig(topic)
 
-    with chat:
+    with placeholder.container():
         async for message in debate(team):
-            if message.startswith("Host"):
-                with st.chat_message(name="Host", avatar="🥸"):
-                    st.write(message)
+            source, content = parse_message(message)
 
-            elif message.startswith("Narendra"):
-                with st.chat_message(name="Narendra", avatar="🫡"):
-                    st.write(message)
+            if source == "Host":
+                with st.chat_message("Host", avatar="🥸"):
+                    st.write(content)
 
-            elif message.startswith("Rahul"):
-                with st.chat_message(name="Rahul", avatar="🤔"):
-                    st.write(message)
+            elif source == "Narendra":
+                with st.chat_message("Narendra", avatar="🫡"):
+                    st.write(content)
+
+            elif source == "Rahul":
+                with st.chat_message("Rahul", avatar="🤔"):
+                    st.write(content)
+
+            else:
+                st.write(content)
 
 
 if clicked:
-    chat.empty()
+    chat_placeholder.empty()
 
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-
-    loop.run_until_complete(run_debate())
+    asyncio.run(run_debate_stream(topic, chat_placeholder))
 
     st.balloons()
-
-
-
-
